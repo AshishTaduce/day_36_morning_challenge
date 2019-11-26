@@ -34,13 +34,14 @@ class Account {
 
   Account mergedAccounts(Account other) {
     this.emails.addAll(other.emails);
+    emails.sort();
     return Account(this.name, this.emails.toSet().toList());
   }
 }
 
 dynamic accountsMerge(List<List<String>> accounts) {
   List<Account> accountsList = [];
-
+  List<List<String>> result = [];
   for (int i = 0; i < accounts.length; i++) {
     List<String> emails = [];
 
@@ -61,11 +62,10 @@ dynamic accountsMerge(List<List<String>> accounts) {
       }
     }
   }
-  List<List<String>> result = [];
+
   for (int i = 0; i < accountsList.length; i++) {
     List<String> temp = [];
     temp.add(accountsList[i].name);
-    accountsList[i].emails.sort();
     temp.addAll(accountsList[i].emails);
     result.add(temp);
   }
